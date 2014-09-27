@@ -9,12 +9,12 @@
 %%%---- END COPYRIGHT ---------------------------------------------------------
 %%%-------------------------------------------------------------------
 %%% @author Magnus Feuer <magnus@feuerlabs.com>
-%%% @author Malotte W Lönne <malotte@malotte.net>
+%%% @author Malotte W LÃ¶nne <malotte@malotte.net>
 %%% @copyright (C) 2013, Feuerlabs, Inc.
 %%% @doc
 %%%  GPIO interface
 %%%
-%%% Created: 11 Jun 2012 by Magnus Feuer 
+%%% Created: 11 Jun 2012 by Magnus Feuer
 %%% @end
 %%%-------------------------------------------------------------------
 
@@ -28,11 +28,11 @@
 	 stop/0]).
 
 %% gen_server callbacks
--export([init/1, 
-	 handle_call/3, 
-	 handle_cast/2, 
+-export([init/1,
+	 handle_call/3,
+	 handle_cast/2,
 	 handle_info/2,
-         terminate/2, 
+         terminate/2,
 	 code_change/3]).
 
 -record(state,
@@ -46,8 +46,8 @@
 %%
 %% @end
 %%--------------------------------------------------------------------
--spec start_link(Args::list()) ->  
-			{ok, Pid::pid()} | 
+-spec start_link(Args::list()) ->
+			{ok, Pid::pid()} |
 			{error, Reason::atom()}.
 start_link(Args) ->
     F =	case proplists:get_value(linked,Args,true) of
@@ -75,14 +75,14 @@ stop() ->
 %%
 %% @end
 %%--------------------------------------------------------------------
--spec init(Args::list()) -> 
+-spec init(Args::list()) ->
 		  {ok, State::#state{}} |
 		  {stop, Reason::atom()}.
 init(Options) ->
     ?dbg("init: options ~p", [Options]),
     process_flag(trap_exit, true),
     case erl_ddll:load(code:priv_dir(gpio), ?GPIO_DRV) of
-	LoadRes when LoadRes =:= ok; 
+	LoadRes when LoadRes =:= ok;
 		     LoadRes =:= { error, already_loaded } ->
 	    Dbg = case proplists:get_value(debug, Options, false) of
 		     true -> " d";
@@ -142,7 +142,7 @@ handle_call(_Request, _From, State) ->
 %%
 %% @end
 %%--------------------------------------------------------------------
--spec handle_cast(Msg::term(), State::#state{}) -> 
+-spec handle_cast(Msg::term(), State::#state{}) ->
 			 {noreply, State::#state{}} |
 			 {noreply, State::#state{}, Timeout::timeout()} |
 			 {stop, Reason::term(), State::#state{}}.
@@ -160,9 +160,9 @@ handle_cast(_Msg, State) ->
 %%--------------------------------------------------------------------
 -type info()::
 	{Port::unsigned(), {data, [BinPinValue::unsigned()]}} |
-	{'EXIT', Pid::pid(), Reason::term()}. 
+	{'EXIT', Pid::pid(), Reason::term()}.
 
--spec handle_info(Info::info(), State::#state{}) -> 
+-spec handle_info(Info::info(), State::#state{}) ->
 			 {noreply, State::#state{}}.
 
 handle_info(_Info, State) ->
@@ -176,7 +176,7 @@ handle_info(_Info, State) ->
 %%
 %% @end
 %%--------------------------------------------------------------------
--spec code_change(OldVsn::term(), State::#state{}, Extra::term()) -> 
+-spec code_change(OldVsn::term(), State::#state{}, Extra::term()) ->
 			 {ok, NewState::#state{}}.
 
 code_change(_OldVsn, State, _Extra) ->
@@ -195,7 +195,7 @@ code_change(_OldVsn, State, _Extra) ->
 %% @spec terminate(Reason, State) -> void()
 %% @end
 %%--------------------------------------------------------------------
--spec terminate(Reason::term(), State::#state{}) -> 
+-spec terminate(Reason::term(), State::#state{}) ->
 		       no_return().
 
 terminate(_Reason, _State) ->

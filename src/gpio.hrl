@@ -9,12 +9,12 @@
 %%%---- END COPYRIGHT ---------------------------------------------------------
 %%% @author Magnus Feuer <magnus@feuerlabs.com>
 %%% @author Tony Rogvall <tony@rogvall.se>
-%%% @author Malotte W Lönne <malotte@malotte.net>
+%%% @author Malotte W LÃ¶nne <malotte@malotte.net>
 %%% @copyright (C) 2013, Feuerlabs, Inc.
 %%% @doc
 %%%  GPIO interface
 %%%
-%%% Created: 2013 by Malotte W Lönne
+%%% Created: 2013 by Malotte W LÃ¶nne
 %%% @end
 -ifndef(GPIO_HRL).
 -define(GPIO_HRL, true).
@@ -27,10 +27,10 @@
 -define(GPIO_DRV, gpio_drv).
 -define(GPIO_PORT, gpio_port).
 
--define(dbg(String, List), 
+-define(dbg(String, List),
 	io:format("~p: " ++ String, [?MODULE | List])).
 
-%% Convenience defines 
+%% Convenience defines
 -ifndef(ee).
 -define(ee(String, List), error_logger:error_msg(String, List)).
 -endif.
